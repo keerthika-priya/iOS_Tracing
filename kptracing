@@ -1,0 +1,23 @@
+from tkinter import Tk
+import os
+import subprocess
+tk=Tk()
+tk.withdraw()
+stackTrace = tk.clipboard_get()
+print('Obfuscated stack trace: ',stackTrace)
+fileName = input('Input file name to store stackTrace in \n your deobfuscated one will be in Deobfuscated_Stack_Trace folder')
+folder = os.getcwd() + '/'+ fileName
+file = open(folder, 'w')
+file.write(stackTrace)
+file.close()
+srcMap = '/Users/keerthika.priya/Desktop/Flipkart/RBundle/BINARIES/multiWidget_2.47_2/cfa09cd5c497a005494c236b82d2c973-3.ota.map'
+if srcMap == '':
+    srcMap = input('Input source map path')
+deobfuscatedStack = subprocess.getoutput('npx metro-symbolicate '+srcMap+' < '+folder)
+stackTrace_Dir = os.getcwd()+'/Deobfuscated_Stack_Trace'
+if os.path.isdir(stackTrace_Dir) == False:
+    os.system('mkdir '+ stackTrace_Dir)
+file = open(os.getcwd()+'/Deobfuscated_Stack_Trace/'+fileName, 'w')
+deobfuscatedStack = deobfuscatedStack.replace(':','\n')
+file.write(deobfuscatedStack)
+file.close()

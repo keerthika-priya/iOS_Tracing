@@ -19,5 +19,6 @@ if os.path.isdir(stackTrace_Dir) == False:
     os.system('mkdir '+ stackTrace_Dir)
 file = open(os.getcwd()+'/Deobfuscated_Stack_Trace/'+fileName, 'w')
 deobfuscatedStack = deobfuscatedStack.replace(':','\n')
+print(deobfuscatedStack)
 file.write(deobfuscatedStack)
 file.close()

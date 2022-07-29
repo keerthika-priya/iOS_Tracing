@@ -10,7 +10,7 @@ folder = os.getcwd() + '/'+ fileName
 file = open(folder, 'w')
 file.write(stackTrace)
 file.close()
-srcMap = '/Users/keerthika.priya/Desktop/Flipkart/RBundle/BINARIES/multiWidget_2.47_2/cfa09cd5c497a005494c236b82d2c973-3.ota.map'
+srcMap = '/Users/keerthika.priya/Desktop/Flipkart/RAMBo/BINARIES/multiWidget_2_48_2/cfa09cd5c497a005494c236b82d2c973-3.ota.map'
 if srcMap == '':
     srcMap = input('Input source map path')
 deobfuscatedStack = subprocess.getoutput('npx metro-symbolicate '+srcMap+' < '+folder)
